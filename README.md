@@ -1,8 +1,8 @@
 local Configs_HUB = {
   Cor_Hub = Color3.fromRGB(0, 0, 0),
-  Cor_Options = Color3.fromRGB(240, 240, 240),
-  Cor_Stroke = Color3.fromRGB(240, 240, 240),
-  Cor_Text = Color3.fromRGB(240, 240, 240),
+  Cor_Options = Color3.fromRGB(0, 0, 0),
+  Cor_Stroke = Color3.fromRGB(0, 255, 0),
+  Cor_Text = Color3.fromRGB(0, 255, 0),
   Cor_DarkText = Color3.fromRGB(240, 240, 240),
   Corner_Radius = UDim.new(0, 4),
   Text_Font = Enum.Font.FredokaOne
@@ -62,7 +62,7 @@ end
 
 local function TextSetColor(instance)
   instance.MouseEnter:Connect(function()
-    CreateTween(instance, "TextColor3", Color3.fromRGB(30, 140, 200), 0.4, true)
+    CreateTween(instance, "TextColor3", Color3.fromRGB(240, 240, 240), 0.4, true)
   end)
   instance.MouseLeave:Connect(function()
     CreateTween(instance, "TextColor3", Configs_HUB.Cor_Text, 0.4, false)
@@ -413,7 +413,7 @@ function MakeWindow(Configs)
     
     local Mensage = Create("TextLabel", CloseMenu, {
       Size = UDim2.new(0.8, 0, 0.25, 0),
-      Text = "are you sure you want to close this script??",
+      Text = "Você tem certeza que deseja fechar o ShnmaxHub?",
       Position = UDim2.new(0.1, 0, 0.2),
       TextColor3 = Configs_HUB.Cor_Text,
       Font = Configs_HUB.Text_Font,
@@ -708,7 +708,7 @@ function MakeWindow(Configs)
     
     TextButton.MouseButton1Click:Connect(function()
       Callback("Click!!")
-      CreateTween(ImageLabel, "ImageColor3", Color3.fromRGB(30, 140, 200), 0.2, true)
+      CreateTween(ImageLabel, "ImageColor3", Color3.fromRGB(0, 0, 0), 0.2, true)
       CreateTween(ImageLabel, "ImageColor3", Configs_HUB.Cor_Stroke, 0.2, false)
     end)
     
@@ -754,31 +754,32 @@ function MakeWindow(Configs)
     })Corner(Frame2, {CornerRadius = UDim.new(1, 0)})
     
     local OnOff = false
-    if Default then
-      OnOff = true
-      CreateTween(Frame2, "Position", UDim2.new(0, 10, 0.5, 0), 0.2, false)
-      CreateTween(Frame2, "BackgroundColor3", Color3.fromRGB(30, 140, 200), 0.2, false)
-      CreateTween(Stroke, "Color", Color3.fromRGB(30, 140, 200), 0.2, false)
-      CreateTween(TextLabel, "TextColor3", Color3.fromRGB(30, 140, 200), 0.2, false)
-    end
+    -- Configuração inicial se Default for true
+if Default then
+    OnOff = true
+    CreateTween(Frame2, "Position", UDim2.new(0, 10, 0.5, 0), 0.2, false)
+    CreateTween(Frame2, "BackgroundColor3", Color3.fromRGB(50, 205, 50), 0.2, false)
+    CreateTween(Stroke, "Color", Color3.fromRGB(240, 240, 240), 0.2, false)
+    CreateTween(TextLabel, "TextColor3", Color3.fromRGB(255, 0, 0), 0.2, false)
+end
     Callback(OnOff)
-    TextButton.MouseButton1Click:Connect(function()
-      if Frame2.Position.X.Offset < 5 then
+TextButton.MouseButton1Click:Connect(function()
+    if Frame2.Position.X.Offset < 5 then
         OnOff = true
         CreateTween(Frame2, "Position", UDim2.new(0, 10, 0.5, 0), 0.2, false)
-        CreateTween(Frame2, "BackgroundColor3", Color3.fromRGB(30, 140, 200), 0.2, false)
-        CreateTween(Stroke, "Color", Color3.fromRGB(30, 140, 200), 0.2, false)
-        CreateTween(TextLabel, "TextColor3", Color3.fromRGB(30, 140, 200), 0.2, false)
+        CreateTween(Frame2, "BackgroundColor3", Color3.fromRGB(50, 205, 50), 0.2, false)
+        CreateTween(Stroke, "Color", Color3.fromRGB(50, 205, 50), 0.2, false)
+        CreateTween(TextLabel, "TextColor3", Color3.fromRGB(50, 205, 50), 0.2, false)
         Callback(true)
-      else
+    else
         OnOff = false
         CreateTween(Frame2, "Position", UDim2.new(0, 2, 0.5, 0), 0.2, false)
-        CreateTween(Frame2, "BackgroundColor3", Configs_HUB.Cor_Stroke, 0.2, false)
-        CreateTween(Stroke, "Color", Configs_HUB.Cor_Stroke, 0.2, false)
-        CreateTween(TextLabel, "TextColor3", Configs_HUB.Cor_Text, 0.2, false)
+        CreateTween(Frame2, "BackgroundColor3", Color3.fromRGB(255, 0, 0), 0.2, false)
+        CreateTween(Stroke, "Color", Color3.fromRGB(255, 0, 0), 0.2, false)
+        CreateTween(TextLabel, "TextColor3", Color3.fromRGB(255, 0, 0), 0.2, false)
         Callback(false)
-      end
-    end)
+    end
+end)
     return {Frame2, Stroke, OnOff, Callback}
   end
   
